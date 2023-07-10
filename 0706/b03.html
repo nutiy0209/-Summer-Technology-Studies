@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<center>
+<head>
+    <meta charset="UTF-8">
+    <title>行動商城 歡迎購物</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 200px;   
+        }
+        input[type=submit]{
+            border-radius: 20px;
+            padding: 5px;
+            margin: 20px;
+            color: aliceblue;
+            background-color: rgb(98, 184, 184);
+            
+        }
+        input[type=submit]:hover{
+            /* color: aliceblue; */
+            background-color: rgb(95, 101, 101);
+        }
+        .in-set{
+            padding-left:10px;
+            margin-left: 10px;
+            border-radius: 10px;
+        }
+        div{
+            font-weight: bold;
+            padding: 8px;
+        }
+        body{
+            background-color: rgb(154, 226, 226);
+        }
+    </style>
+
+</head>
+<body>
+    <div><h3>購物資訊 及表單</h3>
+        <form name="purchase">
+            <input class="in-set" type="checkbox" name="items" value="1">蘋果
+            <input class="in-set" type="checkbox" name="items" value="2">鳳梨
+            <input class="in-set" type="checkbox" name="items" value="3">香蕉
+            <input class="in-set" type="checkbox" name="items" value="4">橘子
+        </form>
+    </div>
+        <input type="submit" value="登出" onclick="location.href='b02.php'">
+</center>
+</body>
+</html>

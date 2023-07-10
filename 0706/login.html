@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<center>
+<head>
+    <meta charset="UTF-8">
+    <title>登入</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 200px;   
+        }
+        input[type=submit]{
+            border-radius: 20px;
+            padding: 5px;
+            margin: 20px;
+            color: aliceblue;
+            background-color: rgb(98, 184, 184);
+            
+        }
+        input[type=submit]:hover{
+            /* color: aliceblue; */
+            background-color: rgb(95, 101, 101);
+        }
+        .in-set{
+            padding-left:10px;
+            margin-left: 10px;
+            border-radius: 10px;
+        }
+        div{
+            font-weight: bold;
+            padding: 8px;
+        }
+        body{
+            background-color: rgb(154, 226, 226);
+        }
+    </style>
+
+</head>
+<body>
+    
+    <form action="b01.php" method="post">
+        <div>
+            <a>帳號</a><input class="in-set" type="text" name="帳號">
+        </div>
+        <div>
+            <a>密碼</a><input class="in-set" type="password" name="密碼">
+        </div>
+            <input type="submit" value="送出">
+    </form>
+</center>
+</body>
+</html>
