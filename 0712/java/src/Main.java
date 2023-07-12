@@ -18,6 +18,7 @@ public class Main {
     }
 
     static int binominal(int n,int m){
+
         return binominal(n-1,m)+binominal(n-1,m-1);
     }
 
@@ -92,13 +93,10 @@ public class Main {
         for(int i=0;i<20;i++){
             data[i] = ran.nextInt(100);
         }
-        for(int i=0;i<20;i++){
-            data[i] = ran.nextInt(100);
-        }
         //bubbleSort
         //bubbleSort(data);
         //insertSort
-        //insertSort(data);
+        insertSort(data);
         //selectSort
         //selectSort(data,data2,c);
         //System.out.println(sum(data,19));
