@@ -1,0 +1,21 @@
+bookid,bookname,author,publisher,price,discount
+1,To Kill a Mockingbird,Harper Lee,Harper Perennial,355,284
+2,1984,George Orwell,Signet Classic,262,209
+3,Pride and Prejudice,Jane Austen,Penguin Classics,646,516
+4,The Great Gatsby,F. Scott Fitzgerald,Scribner,439,351
+5,Moby-Dick,Herman Melville,Penguin Classics,994,795
+6,Crime and Punishment,Fyodor Dostoevsky,Vintage,518,414
+7,War and Peace,Leo Tolstoy,Vintage,211,168
+8,The Catcher in the Rye,J.D. Salinger,Back Bay Books,869,695
+9,The Lord of the Rings,J.R.R. Tolkien,Houghton Mifflin Harcourt,207,165
+10,The Hobbit,J.R.R. Tolkien,Houghton Mifflin Harcourt,308,246
+11,Don Quixote,Miguel de Cervantes,Scribner,637,509
+12,Ulysses,James Joyce,Vintage,403,322
+13,The Odyssey,Homer,Penguin Classics,973,778
+14,The Iliad,Homer,Penguin Classics,161,128
+15,A Tale of Two Cities,Charles Dickens,Penguin Classics,807,645
+16,Great Expectations,Charles Dickens,Penguin Classics,422,337
+17,Les Misérables,Victor Hugo,Signet Classic,849,679
+18,Anna Karenina,Leo Tolstoy,Penguin Classics,563,450
+19,Fahrenheit 451,Ray Bradbury,Simon & Schuster,905,724
+20,Brave New World,Aldous Huxley,Harper Perennial,548,438
