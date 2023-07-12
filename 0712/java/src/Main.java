@@ -10,6 +10,18 @@ public class Main {
         data[x]=data[y];
         data[y]=temp;
     }
+    static int min(int data[],boolean c[]){
+        int md = 999;
+        int index = 20;
+        for(int i=0;i<data.length;i++){
+            if(!c[i] && md<data[i]){
+                md = data[i];
+                index = i;
+            }
+        }
+        c[index] = true;
+        return index;
+    }
     public static void bubbleSort(int data[]){
         for(int i=19; i>0; i--){
             for(int j=0;j<i;j++){
@@ -29,7 +41,7 @@ public class Main {
                 if(p>data[j]){
                     swap(data,j,j+1);
                 }else {
-                    data[j+1]=p;
+
                 }
             }
         }
@@ -59,6 +71,7 @@ public class Main {
         //bubbleSort
         //bubbleSort(data);
         //insertSort
+        insertSort(data);
     }
 
 }
