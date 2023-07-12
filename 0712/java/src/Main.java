@@ -31,7 +31,11 @@ public class Main {
     }
 
     static int factorial(int n){
-        return n*factorial(n-1);
+        if(n==0){
+            return 1;
+        }else {
+            return n*factorial(n-1);
+        }
     }
     public static int min(int data[], boolean c[]) {
         int md = Integer.MAX_VALUE;
@@ -95,13 +99,22 @@ public class Main {
         for(int i=0;i<20;i++){
             data[i] = ran.nextInt(100);
         }
-        //bubbleSort
+        //==bubbleSort==//
         //bubbleSort(data);
-        //insertSort
-        //insertSort(data);
-        //selectSort
+
+        //==insertSort==//
+        //insertSort(data)
+
+        //==selectSort==//
         //selectSort(data,data2,c);
+
+        //==sum==//
         //System.out.println(sum(data,19));
+
+        //==factorial==//
+        //System.out.println(factorial(3));
+
+        //==fibonacci==//
         //System.out.println(fibonacci(10));
     }
 }
