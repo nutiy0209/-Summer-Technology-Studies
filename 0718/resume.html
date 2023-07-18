@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人履歷表</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      padding: 80px 0;
+    }
+    .section-heading {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-heading h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .section-content {
+      text-align: justify;
+      font-size: 25px;
+      display: flex;
+      flex-direction: row;
+    }
+    .section-content{
+      display: flex;
+      justify-content: center;
+      padding-left: 30px;
+      width: 100%;
+    }
+    .圖片 img{
+      width: 80%;
+    }
+    .圖片{
+      width: 30%;
+    }
+    .自我介紹文字{
+      width: 70%;
+      display: flex;
+      padding-left: 20px;
+      justify-content: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-dark  navbar-expand-md ">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fs-4" href="#" ><img src="images/profile.png" class="rounded-pill me-3" width="100">個人履歷表</a>
+          <button class="nav-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1">
+            <span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item active"><a class="nav-link text-white fs-4" href="#">自我介紹</a></li>
+              <li class="nav-item"><a class="nav-link text-white fs-4" href="#">教育背景</a></li>
+              <li class="nav-item"><a class="nav-link text-white fs-4" href="#">專業技能</a></li>
+              <li class="nav-item"><a class="nav-link text-white fs-4" href="#">參與活動照片</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <h2>自我介紹</h2>
+          </div>
+          <div class="section-content">
+            <div class="圖片">
+              <img src="images/life.jpg" class="rounded-pill">
+            </div>
+            <div class="自我介紹文字">
+              <ul>
+                <li>學校：國立聯合大學</li>
+                <li>主修專業：資訊管理</li>
+                <li>興趣：玩遊戲、打籃球、看書</li>
+                <li>目標：成為一名帶社會有所貢獻的工程師</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section bg-light">
+        <div class="container">
+          <div class="section-heading">
+            <h2>教育背景</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>大學：聯合大學，資訊管理學士學位</li>
+              <li>重要課程：程式設計、前端網頁程式設計、資料結構、資料庫程式設計</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <h2>專業技能</h2>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li><img src="images/c- (1).png" alt="Image 1" class="img-fluid" width="40"> C++</li>
+              <li><img src="images/php.png" alt="Image 2" class="img-fluid" width="40"> PHP</li>
+              <li><img src="images/python.png" alt="Image 3" class="img-fluid" width="40"> PYTHON</li>
+              <li><img src="images/css-file-format.png" alt="Image 4" class="img-fluid" width="40"> CSS</li>
+              <li><img src="images/website.png" alt="Image 5" class="img-fluid" width="40"> HTML</li>
+              <li><img src="images/js-format.png" alt="Image 6" class="img-fluid" width="40"> JavaScript</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
