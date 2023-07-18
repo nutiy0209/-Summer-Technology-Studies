@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+ 
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <title>title</title>
+
+    <style>
+
+        body {
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 100vh;
+
+            margin: 0;
+
+            border: 1px solid #000;
+
+            /* 添加body的邊框 */
+
+        }
+
+ 
+
+        #header {
+
+            background-color: #f00;
+
+            color: #fff;
+
+            padding: 10px;
+
+            border-bottom: 1px solid #000;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+ 
+
+        #nav {
+
+            background-color: #00f;
+
+            color: #fff;
+
+            padding: 10px;
+
+            border-bottom: 1px solid #000;
+
+            text-align: center;
+
+        }
+
+ 
+
+        #container {
+
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+            border: 1px solid #000;
+
+            padding: 10px;
+
+            text-align: center;
+
+        }
+
+ 
+
+        #tt {
+
+            flex: 1;
+
+            padding: 10px;
+
+            text-align: center;
+
+        }
+
+ 
+
+        #aside {
+
+            width: 200px;
+
+            background-color: #f2f2f2;
+
+            padding: 10px;
+
+            border: 1px solid #000;
+
+            margin-left: 10px;
+
+        }
+
+ 
+
+        #footer {
+
+            background-color: #000;
+
+            color: #fff;
+
+            text-align: center;
+
+            padding: 10px;
+
+        }
+
+    </style>
+
+</head>
+
+ 
+
+<body>
+
+    <header id="header">
+
+        <div id="nav">NAV</div>
+
+        <div id="header-content">HEADER</div>
+
+    </header>
+
+ 
+
+    <div id="container">
+
+        <content id="tt">BODY</content>
+
+        <aside id="aside">ASIDE</aside>
+
+    </div>
+
+ 
+
+    <footer id="footer">FOOTER</footer>
+
+</body>
+
+ 
+
+</html>
