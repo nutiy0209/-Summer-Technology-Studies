@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>if else</title>
 </head>
+<style>
+    .black {
+        color: black;
+    }
+    .yellow {
+        color: yellow;
+    }
+    .red {
+        color: red;
+    }
+    .white {
+        color: white;
+    }
+</style>
 <body>
-    <label for="weather">Select the weather type today: </label>
+    <label for="weather">Select the color: </label>
     <select id="weather">
         <option value="">--Make a choice--</option>
-        <option value="sunny">Sunny</option>
-        <option value="rainy">Rainy</option>
-        <option value="snowing">Snowing</option>
-        <option value="overcast">Overcast</option>
+        <option value="black">black</option>
+        <option value="yellow">yellow</option>
+        <option value="red">red</option>
+        <option value="white">white</option>
     </select>
 
     <p></p>
@@ -22,53 +36,27 @@
     var select = document.querySelector("select");
     var para = document.querySelector("p");
 
-    select.addEventListener("change", setWeather);
+    select.addEventListener("change", setColor);
 
-    function setWeather() {
+    function setColor() {
         var choice = select.value;
         
-        if (choice === "sunny") {
-            para.textContent = "It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.";
-        } else if (choice === "rainy") {
-            para.textContent = "Rain is falling outside; take a rain coat and a brolly, and don't stay out for too long.";
-        } else if (choice === "snowing") {
-            para.textContent = "The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.";
-        } else if (choice === "overcast") {
-            para.textContent = "It isn't raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.";
+        if (choice === "yellow") {
+            para.textContentc = "yellow";
+            para.className = "yellow";
+        } else if (choice === "black") {
+            para.textContent = "black";
+            para.className = "black";
+        } else if (choice === "red") {
+            para.textContent = "red";
+            para.className = "red";
+        } else if (choice === "white") {
+            para.textContent = "white";
+            para.className = "white";
         } else {
             para.textContent = "";
         }
     }
-    var select = document.querySelector("select");
-    var para = document.querySelector("p");
-
-    select.addEventListener("change", setWeather);
-
-    function setWeather() {
-        var choice = select.value;
-
-        switch (choice) {
-            case "sunny":
-            para.textContent =
-                "It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.";
-            break;
-            case "rainy":
-            para.textContent =
-                "Rain is falling outside; take a rain coat and a brolly, and don't stay out for too long.";
-            break;
-            case "snowing":
-            para.textContent =
-                "The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.";
-            break;
-            case "overcast":
-            para.textContent =
-                "It isn't raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.";
-            break;
-            default:
-            para.textContent = "";
-        }
-    }
-
 
 </script>
 </html>
