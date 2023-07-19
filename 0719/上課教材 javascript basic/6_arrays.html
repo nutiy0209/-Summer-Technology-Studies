@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script>
+        console.log("-----------宣告陣列---------------")
+        shopping = ["bread", "milk", "cheese", "hummus", "noodles"];
+        sequence = [1, 1, 2, 3, 5, 8, 13];
+        random = ["tree", 795, [0, 1, 2],{age:18,name:"Jimmy"}];
+        console.log(random)
+        console.log(random[2][1])
+        console.log(random[3].name)
+
+        console.log("-----------length 陣列長度-------------")
+        for(i=0;i<random.length;i++){
+            console.log(random[i])
+        }
+
+        console.log("-------------split 分割字串into array-------------------")
+        myData = "Manchester,London,Liverpool,Birmingham,Leeds,Carlisle";
+        array_of_data = myData.split(",")
+        console.log(array_of_data)
+
+        console.log("-------------join array組成字串-------------------")
+        new_data = array_of_data.join(" + ")
+        console.log(new_data)
+
+        console.log("---------------pop push shift unshift------------------")
+        console.log(array_of_data)
+
+        array_of_data.pop()
+        console.log(array_of_data)
+
+        array_of_data.push("1234")
+        console.log(array_of_data)
+
+        array_of_data.shift()
+        console.log(array_of_data)
+        
+        array_of_data.unshift("5678")
+        console.log(array_of_data)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

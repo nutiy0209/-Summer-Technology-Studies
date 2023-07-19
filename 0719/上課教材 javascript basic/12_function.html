@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <button>Click</button>
+</body>
+<script>
+    var myButton = document.querySelector("button");
+
+    //呼叫函數
+    myFunction()
+    
+    myButton.onclick = myFunction
+
+    //自訂函數
+    function myFunction() {
+        alert("hello");
+    }
+
+    //匿名函數
+    // var myGreeting = function () {
+    //     alert("hello guys");
+    // };
+    // var anotherGreeting = function () {
+    //     alert("hello world");
+    // };
+
+    // myGreeting()
+    // anotherGreeting()
+
+    // myButton.onclick = function () {
+    //     alert("hello");
+    // };
+
+</script>
+</html>

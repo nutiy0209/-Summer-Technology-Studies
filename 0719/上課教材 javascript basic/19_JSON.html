@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <script>
+        var requestURL ="https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+        
+        var request = new XMLHttpRequest(); //宣告HTTP請求
+
+
+        request.open("GET", requestURL); //開啟新的請求
+
+        request.responseType = "text";
+        request.send();
+
+        request.onload = function () {
+            var responseText = request.response; // get the string from the response
+            var response = JSON.parse(responseText); // convert it to an object
+            console.log(responseText)
+            console.log(response)
+
+            var H1 = document.createElement("h1");
+            H1.textContent = response.squadName;
+            document.body.appendChild(H1);
+
+            var para = document.createElement("p")
+            para.textContent = `Hometown:${response.homeTown} // formed:${response.formed}`
+            document.body.appendChild(para)
+        }
+
+        // request.open("GET", requestURL); //開啟新的請求
+
+        // request.responseType = "json";
+        // request.send();
+
+        // request.onload = function () {
+        //     var response = request.response
+        //     console.log(response)
+
+        //     var H1 = document.createElement("h1");
+        //     H1.textContent = response.squadName;
+        //     document.body.appendChild(H1);
+
+        //     var para = document.createElement("p")
+        //     para.textContent = `Hometown:${response.homeTown} // formed:${response.formed}`
+        //     document.body.appendChild(para)
+        // };
+
+        // 練習把JSON內的資料顯示到頁面上
+
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

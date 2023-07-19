@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>element select</title>
+</head>
+<body>
+    <div>Here is div[0],it's been selected by getElementsByTagName</div>
+    <div>Here is div[1],it's been selected by getElementsByTagName</div>
+    <p id="p1">Here is p1,it's been selected by getElementById</p>
+    <p id="p2">Here is p2,it's not been selected</p>
+    <p class="p_class1">Here is p1_class[0],it's been selected by getElementsByClassName</p>
+    <p class="p_class1">Here is p1_class[1],it's been selected by getElementsByClassName</p>
+    <p class="p_class2">Here is p2_class[0],it's not been selected by getElementsByClassName</p>
+</body>
+<script>
+    const div_selected = document.getElementsByTagName('div');
+    const p_selected_by_id = document.getElementById('p1');
+    const p_selected_by_class = document.getElementsByClassName('p_class1');
+
+    div_selected[0].addEventListener("click", function(){
+        showname(div_selected[0])
+    });
+    p_selected_by_id.addEventListener("click", function(){
+        showname(p_selected_by_id)
+    });
+    p_selected_by_class[0].addEventListener("click",function(){
+        showname(p_selected_by_class[1])
+    });
+
+    function showname(parameter) {
+        alert(parameter.textContent)
+    }
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+    <script>
+        
+        function Person(first, last, age, gender, interests) {
+            this.name = {
+                first : first ,
+                last : last
+            }
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.fullname = this.name.first + " " + this.name.last;
+        }
+
+        Person.prototype.greeting = function () {
+            console.log(`I'm ${this.name.first} ${this.name.last},${this.age} years old.`);
+        }
+        Person.prototype.farewell = function() {
+            console.log(this.name.first + " has left the building. Bye for now!");
+        }
+
+
+
+        var Person1 = new Person("Bob", "Smith", 32, "male", ["music", "skiing"]);
+
+        console.log(Person1.constructor);
+
+        var Person2 = new Person1.constructor("Karen", "Stephenson", 26, "female", ["playing drums", "mountain climbing"]);
+
+        console.log(Person1)
+
+        Person1.greeting();
+        console.log(Person1.fullname)
+        Person2.farewell()
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function of string</title>
+    <script>
+        mystring = "This is my string,hello guys."
+
+
+        console.log("-----------length 字串長度-------------")
+        console.log(mystring.length)
+
+        console.log("-----------取德字串中的特定字元-------------")
+        console.log(mystring[2]) 
+        console.log(mystring[17])
+
+        console.log("------------indexOf 尋找字串中的子字串位置------------")
+        console.log(mystring.indexOf("is")) 
+        console.log(mystring.indexOf("string"))
+        
+        console.log("------------slice 切割子字串------------")
+        console.log(mystring.slice(2,10))
+        start_of_index=mystring.indexOf("string")
+        last_index_of_string=mystring.length-1
+        console.log(mystring.slice(start_of_index,last_index_of_string))
+
+        console.log("------------變更大小寫------------")
+        var radData = "My NaMe Is MuD";
+        console.log(radData.toLowerCase());
+        console.log(radData.toUpperCase());
+
+        console.log("------------replace 替換部分字串------------")
+        new_string=mystring.replace("This","Here")
+        console.log(new_string)
+
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

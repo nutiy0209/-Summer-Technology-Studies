@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classes</title>
+    <script>
+        class Person {
+            name;
+
+            constructor(name) {
+                this.name = name;
+            }
+
+            introduceSelf() {
+                console.log(`Hi! I'm ${this.name}`);
+            }
+        }
+
+        const giles = new Person("Giles");
+        giles.introduceSelf();
+
+        class Professor extends Person {
+            teaches;
+
+            constructor(name, teaches) {
+                super(name); // 套用父類別的建構子，必須在this之前使用
+                this.teaches = teaches;
+            }
+
+            introduceSelf() {
+                console.log(
+                    `My name is ${this.name}, and I will be your ${this.teaches} professor.`,
+                );
+            }
+        }
+
+        const pochi = new Professor("Pochi Chen" , "Programming")
+        pochi.introduceSelf()
+
+        //練習寫父類別矩形(Rectangle)，資料成員name=Rectangle,height=參數傳入,width=參數傳入。
+        //子類別(Square)繼承矩型(Rectangle)，資料成員用super傳入length,name=Square。
+
+
+
+
+        
+        // class Rectangle {
+        //     constructor(height, width) {
+        //         this.name = "Rectangle";
+        //         this.height = height;
+        //         this.width = width;
+        //     }
+        // }  
+
+        // class Square extends Rectangle {
+        //     constructor(length) {
+        //         // Here, it calls the parent class's constructor with lengths
+        //         // provided for the Rectangle's width and height
+        //         super(length, length);
+        //         // Note: In derived classes, super() must be called before you
+        //         // can use 'this'. Leaving this out will cause a reference error.
+        //         this.name = "Square";
+        //     }
+        // }
+
+
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

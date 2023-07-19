@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stirng</title>
+    <script> 
+
+        // 字串宣告，串接
+        one = "Hello, ";
+        two = 'how are you?';
+        joined = one + two;
+        console.log(joined);
+        response = one + "I am fine — " + two;
+        console.log(response)
+
+        // 數字、字串轉型
+        let myNum = 123;
+        console.log(typeof myNum)
+
+        let myString = myNum.toString();
+        console.log(typeof myString);
+
+        myNumber = Number(myString);
+        console.log(typeof myNumber);
+
+        // 模板字串符
+        song = "Fight the Youth";
+        score = 9;
+        highestScore = 10;
+        output ='I like the song " ' +song +' ". I gave it a score of ' +(score / highestScore) * 100 +"%."; //一堆+跟''或""號很麻煩
+        new_output=`I like the song " ${song} ". I gave it a score of ${(score / highestScore)*100}%.`; // ``包起來，變數只要用${}包起來就可以呼叫，方便許多
+        console.log(output)
+        console.log(new_output)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

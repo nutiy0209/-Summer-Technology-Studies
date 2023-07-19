@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <script>
+        var person = {
+                name: ["Bob", "Smith"],
+                age: 32,
+                gender: "male",
+                interests: ["music", "skiing"],
+                bio: function () {
+                    alert(
+                        this.name[0] +
+                            " " +
+                            this.name[1] +
+                            " is " +
+                            this.age +
+                            " years old. He likes " +
+                            this.interests[0] +
+                            " and " +
+                            this.interests[1] +
+                            "."
+                    );
+                },
+                greeting: function () {
+                    alert("Hi! I'm " + this.name[0] + ".");
+                },
+            };
+
+        // 呼叫
+        person["name"][0]
+        person.name[0]
+        person.age
+        person.interests[1]
+                
+        person.bio();
+        person.greeting();
+
+        // 設定object
+        person["name"][0] = "Jimmy"
+        person.name[1] = "Buter"
+        person.age = 50
+        person.interests[1] = "basketball"
+
+
+        // this
+        var person1 = {
+            name: "Chris",
+            greeting: function () {
+                alert("Hi! I'm " + this.name + ".");
+            },
+        };
+        person1.greeting()
+
+        var person2 = {
+            name: "Brian",
+            greeting: function () {
+                alert("Hi! I'm " + this.name + ".");
+            },
+        };
+
+        
+
+        // 練習把person.name還有person.interests的資料型態改為object
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
