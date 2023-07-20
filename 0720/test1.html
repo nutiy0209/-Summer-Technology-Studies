@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非同步練習</title>
+    <script>
+        function loadJSON(url, callback) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+            xhr.responseType = "json";
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    callback(xhr.response);
+                } else {
+                    console.error("Failed to load data.");
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Network error occurred.");
+            };
+
+            xhr.send();
+        }
+
+        function displayData(data) {
+            
+            console.log(data);
+        }
+
+        
+        loadJSON("https://ithelp.ithome.com.tw/articles/10253549", displayData);
+    </script>
+</head>
+<body>
+</body>
+</html>
