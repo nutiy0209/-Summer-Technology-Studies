@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+    <script>
+        var promise = fetch("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json");
+
+        let promise2 = promise.then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        });
+
+        let promise3 = promise2.then((json) => {
+            let para = document.createElement("p");
+            para.textContent = json.squadName;
+            document.body.appendChild(para);
+        });
+
+        let error = promise3.catch((e) => {
+            console.log(`There has been a problem with your fetch operation:${e.message}`);
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

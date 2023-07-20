@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三方API</title>
+</head>
+<body>
+    YouTube:<input type="text" id="search">
+    <button id="search_btn">搜尋</button><br>
+</body>
+<script>
+    var search = document.getElementById("search")
+    var curl=`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${search.value}&key=AIzaSyCB_jstzZtbuLs2Xk_EOa1t-lVH7R7iuKM`
+
+    search.addEventListener("change",()=>{
+        curl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${search.value}&key=AIzaSyCB_jstzZtbuLs2Xk_EOa1t-lVH7R7iuKM`
+    })
+
+    // YT嵌入撥放器API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    var button = document.getElementById("search_btn");
+    button.addEventListener("click",()=>{
+        fetch(curl)
+        .then((response)=>{
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Error : ${response.status}`);
+            }
+        })
+        .then((json)=>{
+            for(i=0;i<json.items.length;i++){
+                var div = document.createElement('div')
+                div.id=`player${i}`
+                document.body.appendChild(div)
+                document.body.appendChild(document.createElement("br"))
+                
+                player = new YT.Player(`player${i}`, {
+                    height: '390',
+                    width: '640',
+                    videoId: json.items[i].id.videoId,
+                    playerVars: {
+                        'playsinline': 1
+                    },
+                })
+            }
+        })
+        .catch((e)=>{
+            console.log(`${e}`)
+        })
+    })
+
+</script>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同步</title>
+</head>
+<body>
+    <button>點擊我</button>
+</body>
+<script>
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => { // 回呼函式
+        alert("你點擊了我！");
+        let pElem = document.createElement("p");
+        pElem.textContent = "這是一段新加的文字。";
+        document.body.appendChild(pElem);
+    });
+</script>
+</html>

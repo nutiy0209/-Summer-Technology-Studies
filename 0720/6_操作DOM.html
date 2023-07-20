@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作DOM</title>
+</head>
+<body>
+    <img src="sin.jpg" height="450px" width="650px"/>
+    <p>
+        <a href="https://www.youtube.com/">Youtube</a>
+        <button>Switch</button>
+    </p>
+</body>
+<script>
+    const link = document.querySelector("a");
+    const img = document.querySelector("img");
+    const button = document.querySelector("button");
+
+    var flag = true;
+
+    button.addEventListener("click", () => {
+        if(flag){
+            img.srcset = "sin2.jpg"
+            link.textContent = "Youtube";
+            link.href = "https://www.youtube.com/";
+            flag = false;
+        }else{
+            img.srcset = "sin.jpg";
+            link.textContent = "Google";
+            link.href = "https://www.google.com"
+            flag = true;
+        }
+    })
+</script>
+</html>
