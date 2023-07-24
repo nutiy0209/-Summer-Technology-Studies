@@ -14,7 +14,7 @@
 
   <script>
     // 從伺服器獲取待辦事項並呈現在網頁上
-    fetch('http://localhost:3000/',{
+    fetch('http://localhost:5500/',{
 		headers: { 'Content-Type': 'application/json' }
 	}).then(response => response.json())
       .then(todoList => {
@@ -31,7 +31,7 @@
       event.preventDefault();
       const todoInput = document.getElementById('todoInput');
       const newTodo = todoInput.value;
-      fetch('http://localhost:3000/', {
+      fetch('http://localhost:5500/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
