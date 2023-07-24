@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const { promisify } = require('util');
 const app = express();
-const port = 3000;
+const port = 5500;
 const bodyParser = require('body-parser');
 
 const readFileAsync = promisify(fs.readFile);
