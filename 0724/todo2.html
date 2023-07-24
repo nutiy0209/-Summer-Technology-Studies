@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id ="todoForm">
+        <input type="text" id="todoInput" placeholder="輸入" required>
+        <button type="submit">Add</button>
+    </form>
+    <ul id="todoList"></ul>
+    <script>
+        fetch('http://localhost:3000/',{
+            headers: { 'Content-Type': 'application/json' }
+        }).then(response => response.json())
+        .then(todoList=>{
+            const todoListElement = document.getElementById('todoList');
+            todoList.forEach(todo=>{
+                const li = document.createElement('li');
+                li.textContent = todo;
+                todoListElement.appendChild(li);
+            });
+        })
+
+        document.getElementById('todoForm').addEventListener('submit',event=>{
+            event.preventDefault()
+            const todoInput = document.getElementById('todoInput')
+            const newTodo = todoInput.value
+            fetch('http://localhost:3000',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({todo:newTodo})
+            }).then(response=>response.text())
+            .then(message=>{
+                const todoListElement = document.getElementById('todoList')
+                console.log(message)
+                todoInput.value = ''
+                const li = document.createElement('li')
+                li.textContent = newTodo
+                todoListElement.appendChild(li)
+            })
+        })
+            
+
+    </script>
+</body>
+</html>
