@@ -40,8 +40,10 @@
 from flask import Flask
 import json
 
-app = Flask(__name__)
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 todo = [
     {"id": 1, "task": "吃飯", "completed": False},
     {"id": 2, "task": "睡覺", "completed": False}
