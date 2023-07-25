@@ -1,16 +1,64 @@
-# This is a sample Python script.
+# message = input('嗨')
+# print(message)
+#
+# age = int(input("輸入年齡"))
+# if age <= 15:
+#     print('FBI')
+# else:
+#     print('老人')
+#
+# x = 5
+# while x >= 0:
+#     print(x)
+#     x -= 1
+#
+#
+# class Car:
+#     def __init__(self, color, seat):
+#         self.color = color
+#         self.seat = seat
+#
+#     def drive(self):
+#         print(f"my car is {self.color} and {self.seat}")
+#
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# def count_vowels(input_string):
+#     vowels = "aeiouAEIOU"
+#     vowel_count = 0
+#
+#     for char in input_string:
+#         if char in vowels:
+#             vowel_count += 1
+#
+#     return vowel_count
+#
+#
+# user_input = input("請輸入一個字串：")
+# result = count_vowels(user_input)
+# print("該字串中的母音數量為：", result)
+
+from flask import Flask
+import json
+
+app = Flask(__name__)
+
+todo = [
+    {"id": 1, "task": "吃飯", "completed": False},
+    {"id": 2, "task": "睡覺", "completed": False}
+]
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@app.route("/")
+def hello():
+    return "hello world"
 
 
-# Press the green button in the gutter to run the script.
+@app.route('/todo', methods=['GET'])
+def get_todo():
+    json_todo = json.dumps(todo, ensure_ascii=False).encode('utf8')
+    response = app.response_class(json_todo, content_type='application/json; charset=utf-8')
+    return response
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app.run(port=5500)
