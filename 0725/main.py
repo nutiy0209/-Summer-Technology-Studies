@@ -1,65 +1,46 @@
-# message = input('嗨')
-# print(message)
-#
-# age = int(input("輸入年齡"))
-# if age <= 15:
-#     print('FBI')
-# else:
-#     print('老人')
-#
-# x = 5
-# while x >= 0:
-#     print(x)
-#     x -= 1
-#
-#
-# class Car:
-#     def __init__(self, color, seat):
-#         self.color = color
-#         self.seat = seat
-#
-#     def drive(self):
-#         print(f"my car is {self.color} and {self.seat}")
-#
-
-# def count_vowels(input_string):
-#     vowels = "aeiouAEIOU"
-#     vowel_count = 0
-#
-#     for char in input_string:
-#         if char in vowels:
-#             vowel_count += 1
-#
-#     return vowel_count
-#
-#
-# user_input = input("請輸入一個字串：")
-# result = count_vowels(user_input)
-# print("該字串中的母音數量為：", result)
-
-from flask import Flask
-import json
+from flask import Flask, request, url_for, redirect, render_template, jsonify
 
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-todo = [
+app.config['JSON_AS_ASII'] = False
+todos = [
     {"id": 1, "task": "吃飯", "completed": False},
     {"id": 2, "task": "睡覺", "completed": False}
 ]
 
 
-@app.route("/")
-def hello():
-    return "hello world"
+@app.route('/')
+def index():
+    return render_template("todo.html")
 
 
-@app.route('/todo', methods=['GET'])
-def get_todo():
-    json_todo = json.dumps(todo, ensure_ascii=False).encode('utf8')
-    response = app.response_class(json_todo, content_type='application/json; charset=utf-8')
+@app.route('/todos', methods=['GET'])
+def get_todos():
+    response = jsonify(todos)
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+
+@app.route('/todos', methods=['POST'])
+def creat_todo():
+    print("get new Todo")
+    data = request.form['newTask']
+    print(data)
+    todo = {"id": len(todos) + 1, "task": data, "completed": False}
+    todos.append(todo)
+    return redirect(url_for('index'))
+
+
+@app.route('/todos/<int:todo_id>', methods=['PUT'])
+def update_todo(todo_id):
+    data = request.form['updateTask']
+    todo = next((todo for todo in todos if todo['id'] == todo_id))
+    if todo:
+        todo['task'] = data
+    print('update')
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

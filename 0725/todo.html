@@ -6,8 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="http://localhost:5500/todos" method="POST">
+        <input type="text" name="newTask" placeholder="輸入新代辦事項">
+        <button id="submit">新增</button>
+    </form>
     <div id="todoList">
-        
+
     </div>
     
 </body>
@@ -22,6 +26,7 @@
             .then(response => response.text())
             .then(rj=>{
                 console.log(rj)
+                document.getElementById('todoList').innerHTML = rj
             })
         }
         getTodoList()
