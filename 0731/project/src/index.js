@@ -6,13 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import Navbar from './component/Navbar';
 import Home from './component';
 import Footer from './component/footer';
+import TodoApp from './component/todolist/TodoApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const t = true;
 root.render(
  <React.StrictMode>
   <Navbar />
-  <Home/>
+  <TodoApp/>
   <Footer/>
  </React.StrictMode>
 );
