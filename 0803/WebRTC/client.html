@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    const socket = io("http://localhost:1820");
+    socket.on("connect", ()=>{
+        console.log(socket.connected);// true
+    });
+
+    socket.on("disconnect", () =>{
+        console.log(socket.connected);
+    });
+    socket.on("hello",(arg)=>{
+        console.log(arg);
+    });
+    socket.emit("message", "fuck");
+    socket.on("message", (data) => {
+    console.log("Received message from server:", data);
+    });
+    socket.on("private massege",(anotherSocketID, msg)=>{
+        console.log("helle give me money",anotherSocketID)
+    })
+</script>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        <button class="initialBtn">初始化</button>
+
+        <button class="btnCall">call</button>
+
+        <video width="200" height="200" autoplay id="myVideo" muted playsinline></video>
+
+        <video width="500" height="500" autoplay id="remoteVideo" playsinline></video>
+    </div>
+
+
+    <script>
+        const initialBtn = document.querySelector('.initialBtn');
+        const myVideo = document.querySelector('#myVideo');
+        const remoteVideo = document.querySelector('#remoteVideo');
+        const btnCall = document.querySelector('.btnCall');
+
+        let localstream;
+        let pc;
+
+        // 連線到 Server Port 
+        const socket = io("http://localhost:1820")
+
+        socket.on('connect', () => {
+            console.log('已連線到 Socket.io 伺服器');
+            // 在這裡可以進行連線成功後的處理
+        });
+
+        socket.on('disconnect', () => {
+            console.log('與 Socket.io 伺服器斷線');
+            // 在這裡可以進行斷線後的處理
+        });
+
+        async function initPeerConnection() {
+            // 初始化影像/聲音
+            localstream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+            myVideo.srcObject = localstream;
+
+            // 建立p2p連線
+            const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] }; // Google's public STUN server
+            pc = new RTCPeerConnection(configuration);
+
+            // 加入本地串流的所有軌道（tracks）
+            localstream.getTracks().forEach(track => {
+                pc.addTrack(track, localstream);
+            });
+
+            // 加入房間
+            socket.emit('joinRoom', 'secret room');//第二個參數是房號，自己選怎麼取
+
+            // 監聽 ICE Server
+            pc.onicecandidate = ({ candidate }) => {
+                if (!candidate) { return; }
+                socket.emit("peerconnectSignaling", { candidate });
+            };
+
+            // 監聽 ICE 連接狀態
+            pc.oniceconnectionstatechange = (evt) => {
+                console.log('ICE 伺服器狀態變更 => ', evt.target.iceConnectionState);
+            };
+
+            // 將遠端串流顯示到畫面上
+            pc.ontrack = (event) => {
+                if (remoteVideo.srcObject !== event.streams[0]) {
+                    remoteVideo.srcObject = event.streams[0];
+                    console.log('接收流並顯示於遠端視訊！');
+                }
+            }
+            pc
+        }
+
+        initialBtn.addEventListener('click', initPeerConnection);
+
+        socket.on('peerconnectSignaling', async (message) => {
+            if (!pc) {
+                console.log('PeerConnection 尚未初始化');
+                return;
+            }
+
+            if (message.type === 'offer') { 
+                try {
+                    if (pc.signalingState !== 'stable') { //  Client 2 應該要是沒有 setRemoteDescription 和 setLocalDescription 所以為state
+                        console.log('PeerConnection 狀態不正確，等待...');
+                        return;
+                    }
+                    // Client2 收到 Client 1 的offer
+                    await pc.setRemoteDescription(new RTCSessionDescription(message)); // 設定Clent 2 遠端描述為offer
+                    const answer = await pc.createAnswer(); //建answer
+                    await pc.setLocalDescription(answer); // 設Client 2 本地描述為answer
+                    socket.emit("peerconnectSignaling", pc.localDescription); // 發送answer給Client 1
+                } catch (err) {
+                    console.error('處理 Offer 時發生錯誤：', err);
+                }
+            } else if (message.type === 'answer') {
+                try {
+                    if (pc.signalingState !== 'have-local-offer') { // Clietn 1 收到 由於有 setLocalDescription過，狀態應該要是 have-local-offer
+                        console.log('PeerConnection 狀態不正確，等待...');
+                        return;
+                    }
+                    await pc.setRemoteDescription(new RTCSessionDescription(message)); // Client 1 設定遠端描述為answer
+                } catch (err) {
+                    console.error('處理 Answer 時發生錯誤：', err);
+                }
+            } else if (message.candidate) {
+                try {
+                    const cand = new RTCIceCandidate(message.candidate);
+                    await pc.addIceCandidate(cand);
+                } catch (err) {
+                    console.error('新增 ICE 候選時發生錯誤：', err);
+                }
+            }
+        });
+
+        socket.on('roomBroadcast', message => {
+            console.log('房間廣播 => ', message);
+        });
+
+        const signalOption = {
+            offerToReceiveAudio: 1, // 是否傳送聲音流給對方
+            offerToReceiveVideo: 1, // 是否傳送影像流給對方
+        };
+
+        async function createSignal() {
+            try {
+                if (!pc) {
+                    console.log('尚未開啟視訊');
+                    return;
+                }
+                // 呼叫 peerConnect 內的 createOffer / createAnswer
+                const SDP = await pc.createOffer(signalOption);
+                // 設定本地流配置
+                await pc.setLocalDescription(SDP);
+                socket.emit("peerconnectSignaling", pc.localDescription);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        btnCall.addEventListener('click', createSignal);
+
+    </script>
+</body>
+
+
+</html>
