@@ -1,0 +1,35 @@
+// Contextual compression
+
+import * as fs from "fs";
+
+import { OpenAI } from "langchain/llms/openai";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RetrievalQAChain } from "langchain/chains";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_compression";
+import { LLMChainExtractor } from "langchain/retrievers/document_compressors/chain_extract";
+
+const model = new OpenAI();
+const baseCompressor = LLMChainExtractor.fromLLM(model);
+
+const text = fs.readFileSync("chatgptisablurjpg.txt", "utf8");
+
+const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
+const docs = await textSplitter.createDocuments([text]);
+
+// Create a vector store from the documents.
+const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+
+const retriever = new ContextualCompressionRetriever({
+  baseCompressor,
+  baseRetriever: vectorStore.asRetriever(),
+});
+
+const chain = RetrievalQAChain.fromLLM(model, retriever);
+
+const res = await chain.call({
+  query: "ChatGPT 可以準確地回答問題嗎？",
+});
+
+console.log({ res });
