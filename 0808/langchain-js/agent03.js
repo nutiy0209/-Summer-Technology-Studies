@@ -15,7 +15,7 @@ const executor = PlanAndExecuteAgentExecutor.fromLLMAndTools({
 });
 
 const result = await executor.call({
-  input: `台灣的總統是誰? What is their current age raised to the second power?`,
+  input: `習近平廢物?`,
 });
 
 console.log({ result });
