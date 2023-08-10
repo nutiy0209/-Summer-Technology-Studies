@@ -13,7 +13,7 @@ import { LLMChainExtractor } from "langchain/retrievers/document_compressors/cha
 const model = new OpenAI();
 const baseCompressor = LLMChainExtractor.fromLLM(model);
 
-const text = fs.readFileSync("chatgptisablurjpg.txt", "utf8");
+const text = fs.readFileSync("new.txt", "utf8");
 
 const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
 const docs = await textSplitter.createDocuments([text]);
@@ -29,7 +29,7 @@ const retriever = new ContextualCompressionRetriever({
 const chain = RetrievalQAChain.fromLLM(model, retriever);
 
 const res = await chain.call({
-  query: "ChatGPT 可以準確地回答問題嗎？",
+  query: "颱風最近?",
 });
 
 console.log({ res });

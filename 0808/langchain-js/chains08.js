@@ -6,11 +6,12 @@ import { PromptTemplate } from "langchain/prompts";
 
 // This is an LLMChain to write a synopsis given a title of a play and the era it is set in.
 const llm = new OpenAI({ temperature: 0 });
-const template = `You are a playwright. Given the title of play and the era it is set in, it is your job to write a synopsis for that title.
+const template = `
+你是一位編劇。根據劇目的標題和設定時代，你的工作是為該劇寫一份劇情簡介。
 
-Title: {title}
-Era: {era}
-Playwright: This is a synopsis for the above play:`;
+劇目標題：{title}
+設定時代：{era}
+劇作家：以下是該劇的劇情簡介：`;
 const promptTemplate = new PromptTemplate({
   template,
   inputVariables: ["title", "era"],
@@ -23,11 +24,10 @@ const synopsisChain = new LLMChain({
 
 // This is an LLMChain to write a review of a play given a synopsis.
 const reviewLLM = new OpenAI({ temperature: 0 });
-const reviewTemplate = `You are a play critic from the New York Times. Given the synopsis of play, it is your job to write a review for that play.
-  
-   Play Synopsis:
+const reviewTemplate = `你是一名影評。你的工作為該片寫一份評論。
+  劇情簡介:
    {synopsis}
-   Review from a New York Times play critic of the above play:`;
+   解說員對上述劇目的評論：:`;
 const reviewPromptTemplate = new PromptTemplate({
   template: reviewTemplate,
   inputVariables: ["synopsis"],
@@ -46,8 +46,8 @@ const overallChain = new SequentialChain({
   verbose: true,
 });
 const chainExecutionResult = await overallChain.call({
-  title: "Tragedy at sunset on the beach",
-  era: "Victorian England",
+  title: "我的英雄學院",
+  era: "有很多特異功能的時代",
 });
 console.log(chainExecutionResult);
 /*
